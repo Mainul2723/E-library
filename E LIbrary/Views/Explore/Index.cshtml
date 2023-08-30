@@ -1,0 +1,26 @@
+﻿@model E_Library.Models.Explore
+
+@{
+    ViewBag.Title = "Explore";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Explore</h2>
+
+<table style="border-collapse:separate; border-spacing:1em 1em;">
+    @foreach (var book in Model.Books) {
+        <tr>
+            <td>
+                <a href="/Book/Details/@book.Id">
+                    <img src="~/Images/Books/@book.Image" width="150" />
+                 </a>
+            </td>
+            <td>
+                <h3>@Html.ActionLink($"{book.Title}", "Details", "Book", new { id = book.Id }, null)</h3>
+                <h4>@Html.ActionLink($"{book.Author.Name}", "Details", "Author", new { id = book.Author.Id }, null)</h4>
+                <p>@book.Description</p>
+            </td>
+
+        </tr>
+    }
+</table>
